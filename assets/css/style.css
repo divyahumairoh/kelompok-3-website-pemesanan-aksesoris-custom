@@ -165,3 +165,12 @@ footer {
     font-size: 2.2rem; 
   }
 }
+
+/* ===== Form login/register ===== */
+.form-auth { max-width: 380px; margin: 60px auto; background: #fff; padding: 30px; border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(224, 86, 143, .1); }
+.form-auth h1 { margin-bottom: 16px; font-size: 1.5rem; }
+.form-auth label { display: block; margin: 12px 0 4px; font-size: .9rem; }
+.form-auth input { width: 100%; padding: 10px 14px; border: 1px solid var(--pink-muda); border-radius: 10px; }
+.form-auth button { margin-top: 18px; width: 100%; }
+.pesan-error { background: #fde8e8; color: #b00020; padding: 8px 12px; border-radius: 8px; font-size: .9rem; }

@@ -1,0 +1,23 @@
+/* Satu sumber warna untuk pelanggan dan admin. Selalu dimuat PALING AKHIR. */
+:root {
+  --pink: #f472a8;
+  --pink-tua: #e0568f;
+  --pink-muda: #fde8f1;
+  --ungu: #7c4dcc;
+  --ungu-tua: #5b34a8;
+  --lavender: #e6dbfa;
+  --lavender-muda: #f5f0fe;
+  --bg: #fbf7ff;
+  --gelap: #2d2430;
+  --teks: #3b2a35;
+  --bayangan: 0 4px 14px rgba(124, 77, 204, .10);
+}
+body { background: var(--bg); }
+
+/* Sisi pelanggan: navbar dan hero memakai gradien pink-lavender */
+.navbar { background: linear-gradient(90deg, var(--lavender), var(--pink-muda)); border-bottom: none; }
+.logo { color: var(--ungu-tua); }
+.menu a { color: var(--ungu-tua); }
+.menu a:hover, .menu a.aktif { background: #fff; color: var(--ungu-tua); box-shadow: 0 2px 8px rgba(124, 77, 204, .15); }
+.hero { background: linear-gradient(135deg, var(--pink-muda), var(--lavender-muda)); }
+.kartu { box-shadow: var(--bayangan); }
