@@ -18,7 +18,10 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori");
   <div class="grid">
     <?php while ($k = mysqli_fetch_assoc($kategori)) { ?>
       <a class="kartu" href="<?= BASE_URL ?>/pages/katalog.php?kategori=<?= $k['id'] ?>">
-        <div class="gambar"></div>
+        <div class="gambar">
+          <!-- Menampilkan gambar produk berdasarkan data dari database -->
+          <img src="<?= BASE_URL ?>/assets/img/<?= htmlspecialchars($k['gambar']) ?>" alt="<?= htmlspecialchars($k['nama']) ?>">
+        </div>
         <strong><?= htmlspecialchars($k['nama']) ?></strong>
       </a>
     <?php } ?>

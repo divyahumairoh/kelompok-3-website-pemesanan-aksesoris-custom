@@ -27,4 +27,7 @@ $jumlah_keranjang = isset($_SESSION['keranjang']) ? count($_SESSION['keranjang']
     <a href="<?= BASE_URL ?>/pages/keranjang.php">🛒<?= $jumlah_keranjang > 0 ? " ($jumlah_keranjang)" : "" ?></a>
     <a href="<?= BASE_URL ?>/pages/<?= isset($_SESSION['user_id']) ? 'profil.php' : 'login.php' ?>">👤</a>
   </div>
+
+  <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/tema.css">
 </header>
