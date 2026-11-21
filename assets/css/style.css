@@ -1,176 +1,345 @@
+/* assets/css/style.css — Tema Vintage Coquette Soft Pink & Pastel Cream LYDI (Zero-Scroll Desktop) */
 :root {
-  --pink: #f472a8;
-  --pink-tua: #e0568f;
-  --pink-muda: #fde8f1;
-  --bg: #fff5f9;
-  --teks: #3b2a35;
-  --gelap: #2d2430;
+  --bg-blush-top: #FCF8F4;
+  --bg-cream: #F3E6E3;
+  --bg-surface: rgba(255, 253, 250, 0.96);
+  --bg-muted: #F6E9EC;
+  --ink-primary: #4A3237;
+  --ink-secondary: #7C6167;
+  --border-hairline: rgba(206, 173, 181, 0.48);
+  --accent-rose: #A86473;
+  --accent-rose-hover: #935362;
+  --accent-gold: #C7A98B;
+  --accent-sage: #6F8773;
+  --accent-lavender: #8B7B99;
 }
 
-* { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background:
+    radial-gradient(1200px 640px at 50% -10%, rgba(247, 224, 230, 0.72), transparent 68%),
+    radial-gradient(800px 540px at 12% 24%, rgba(235, 240, 232, 0.56), transparent 62%),
+    radial-gradient(760px 520px at 88% 72%, rgba(242, 230, 217, 0.52), transparent 64%),
+    linear-gradient(180deg, #FCF8F4 0%, #F8EFEA 55%, #F3E6E3 100%);
+  min-height: 100vh;
+  color: var(--ink-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
 }
 
-body { 
-  font-family: 'Segoe UI', Arial, sans-serif; 
-  background: var(--bg); 
-  color: var(--teks); 
+
+@media (min-width: 1024px) {
+  body {
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
 
-a { 
-  text-decoration: none; 
-  color: inherit; 
+
+h1, h2, h3, .brand-logo {
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-.container { 
-  max-width: 1100px; 
-  margin: 0 auto; 
-  padding: 0 20px; 
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
 }
 
-/* Navbar */
-.navbar { 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between;
-  padding: 14px 40px; 
-  background: #fff; 
-  border-bottom: 1px solid var(--pink-muda);
-  position: sticky; 
-  top: 0; 
-  z-index: 10; 
-}
-
-.logo { 
-  font-size: 1.6rem; 
-  font-weight: 700; 
-  color: var(--pink-tua); 
-}
-
-.menu { 
-  display: flex; 
-  gap: 20px; 
-}
-
-.menu a { 
-  padding: 6px 14px; 
-  border-radius: 20px; 
-  font-size: .95rem; 
-}
-
-.menu a:hover, .menu a.aktif { 
-  background: var(--pink-muda); 
-  color: var(--pink-tua); 
-}
-
-.ikon { 
-  display: flex; 
-  gap: 16px; 
-  font-size: 1.1rem; 
-}
-
-/* Tombol */
-.btn { 
-  display: inline-block; 
-  padding: 10px 22px; 
-  border-radius: 24px;
-  background: var(--gelap); 
-  color: #fff; 
-  border: none; 
-  cursor: pointer; 
-  font-size: .95rem; 
-}
-
-.btn-pink { 
-  background: var(--pink); 
-}
-
-.btn:hover { 
-  opacity: .9; 
-}
-
-/* Beranda */
-.hero { 
-  background: linear-gradient(135deg, #ffe3ef, #fff5f9); 
-  padding: 70px 0; 
-}
-
-.hero h1 { 
-  font-size: 3rem; 
-  margin-bottom: 10px; 
-}
-
-.hero p { 
-  margin-bottom: 22px; 
-}
-
-.judul-seksi { 
-  text-align: center; 
-  margin: 50px 0 24px; 
-}
-
-/* Grid kartu (kategori dan produk) */
-.grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-  gap: 20px; 
-}
-
-.kartu { 
-  background: #fff; 
-  border-radius: 16px; 
-  padding: 12px; 
-  text-align: center;
-  box-shadow: 0 4px 14px rgba(224, 86, 143, .1); 
-  transition: transform 0.2s ease;
-}
-
-.kartu:hover {
-  transform: translateY(-4px);
-}
-
-/* Kotak Gambar & Pengaturan Gambar di dalamnya */
-.kartu .gambar { 
-  aspect-ratio: 1; 
-  background: var(--pink-muda); 
-  border-radius: 12px; 
-  margin-bottom: 10px; 
-  overflow: hidden; /* Memastikan sudut gambar ikut melengkung sesuai border-radius */
-}
-
-.kartu .gambar img {
+.container {
+  max-width: 1240px;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Membuat gambar pas mengisi kotak secara proporsional */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.lydi-header {
+  background: rgba(252, 248, 244, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #E5CFD5;
+  flex-shrink: 0;
+}
+
+.header-inner {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand-logo {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--ink-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.16s ease;
+}
+
+.nav-links a:hover { color: var(--ink-primary); }
+
+/* Tactile Animated Buttons */
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.14s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.16s ease;
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: scale(0.95); }
+
+.btn-primary {
+  background: var(--accent-rose);
+  color: #FFFFFF;
+}
+.btn-primary:hover { background: var(--accent-rose-hover); }
+
+.btn-secondary {
+  background: #FFFDFB;
+  color: var(--ink-primary);
+  border-color: #DFC4CC;
+}
+.btn-secondary:hover { background: #F7E7EB; }
+
+.btn-champagne {
+  background: #F2E5D5;
+  color: var(--ink-primary);
+  border-color: #D3B799;
+}
+.btn-champagne:hover { background: #EAD9C4; }
+
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.42);
+  transform: scale(0);
+  animation: ripple-anim 0.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to { transform: scale(3); opacity: 0; }
+}
+
+/* Cards & Triptych Vintage Coquette Arch Portals */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid #E5CFD5;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 30px -20px rgba(96, 62, 68, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.arch-card {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255, 253, 250, 0.95) 0%, rgba(246, 225, 230, 0.72) 42%, transparent 74%),
+    linear-gradient(180deg, #F5DFE5 0%, #FAF0F1 48%, #FFFDFB 100%);
+  border: 1px solid #E5CFD5;
+  border-radius: 170px 170px 16px 16px;
+  padding: 22px;
+}
+
+.triptych-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 16px 0;
+}
+
+.studio-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 20px;
+  padding: 16px 0;
+}
+
+.preview-box {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255, 253, 250, 0.95) 0%, rgba(246, 225, 230, 0.72) 42%, transparent 74%),
+    linear-gradient(180deg, #F5DFE5 0%, #FAF0F1 48%, #FFFDFB 100%);
+  border: 1px solid #E5CFD5;
+  border-radius: 130px 130px 16px 16px;
+  flex: 1;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Studio Step Tabs (Zero Scroll) */
+.step-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 4px;
+  background: #F6E9EC;
+  border: 1px solid #E5CFD5;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.step-tab-btn {
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+}
+.step-tab-btn.active {
+  background: var(--accent-rose);
+  color: #FFFFFF;
+}
+
+.step-pane { display: none; flex: 1; overflow-y: auto; }
+.step-pane.active { display: block; }
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.option-card {
+  padding: 11px;
+  border-radius: 10px;
+  border: 1px solid #E5CFD5;
+  background: #FFFDFB;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, transform 0.14s;
+}
+.option-card:active { transform: scale(0.96); }
+.option-card.active {
+  border-color: var(--accent-rose);
+  background: #FAF0F2;
+  box-shadow: 0 0 0 1px var(--accent-rose);
+}
+
+.bead-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border: 1px solid #E5CFD5;
+  border-radius: 10px;
+  background: #FFFDFB;
+}
+
+.bead-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(74, 50, 55, 0.16);
+  display: inline-block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid #DFC4CC;
+  background: #FCF8F4;
+  color: var(--ink-primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+
+.vintage-lace-divider {
+  width: 100%;
+  height: 11px;
   display: block;
 }
 
-footer { 
-  text-align: center; 
-  padding: 30px; 
-  margin-top: 60px; 
-  color: #9b7f8d; 
-  font-size: .9rem; 
+.vintage-corner-ornament {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  pointer-events: none;
+  opacity: 0.92;
 }
 
-@media (max-width: 700px) {
-  .navbar { 
-    flex-direction: column; 
-    gap: 10px; 
-    padding: 12px; 
-  }
-  .hero h1 { 
-    font-size: 2.2rem; 
-  }
+.vintage-arch-keepsake {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.72;
 }
 
-/* ===== Form login/register ===== */
-.form-auth { max-width: 380px; margin: 60px auto; background: #fff; padding: 30px; border-radius: 16px;
-  box-shadow: 0 4px 14px rgba(224, 86, 143, .1); }
-.form-auth h1 { margin-bottom: 16px; font-size: 1.5rem; }
-.form-auth label { display: block; margin: 12px 0 4px; font-size: .9rem; }
-.form-auth input { width: 100%; padding: 10px 14px; border: 1px solid var(--pink-muda); border-radius: 10px; }
-.form-auth button { margin-top: 18px; width: 100%; }
-.pesan-error { background: #fde8e8; color: #b00020; padding: 8px 12px; border-radius: 8px; font-size: .9rem; }
+.lydi-footer {
+  border-top: 1px solid #E5CFD5;
+  background: rgba(252, 248, 244, 0.92);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--ink-secondary);
+  flex-shrink: 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { color: var(--ink-secondary); text-decoration: none; }
+.footer-links a:hover { color: var(--ink-primary); }
+
+@media (max-width: 1023px) {
+  .triptych-grid, .studio-grid { grid-template-columns: 1fr; }
+}
