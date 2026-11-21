@@ -1,48 +1,34 @@
 <?php
-session_start();
-require_once '../config/koneksi.php';
-
-// Kalau sudah login, arahkan sesuai peran
-if (isset($_SESSION['user_id'])) {
-    header('Location: ' . ($_SESSION['role'] === 'admin' ? '../admin/dashboard.php' : '../index.php'));
-    exit;
-}
-
-$error = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email    = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
-
-    $stmt = mysqli_prepare($koneksi, "SELECT id, nama, password, role FROM users WHERE email = ?");
-    mysqli_stmt_bind_param($stmt, 's', $email);
-    mysqli_stmt_execute($stmt);
-    $user = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
-
-    if ($user && password_verify($password, $user['password'])) {
-        session_regenerate_id(true);
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['nama']    = $user['nama'];
-        $_SESSION['role']    = $user['role'];
-        header('Location: ' . ($user['role'] === 'admin' ? '../admin/dashboard.php' : '../index.php'));
-        exit;
-    }
-    $error = 'Email atau password salah.';
-}
-
-$judul = 'Login';
-include '../includes/header.php';
+// pages/login.php — Halaman Login Pelanggan & Admin
+require_once __DIR__ . '/../includes/header.php';
+$error = $_GET['error'] ?? '';
 ?>
-<div class="container">
-  <div class="form-auth">
-    <h1>Masuk ke lydi.</h1>
-    <?php if ($error) { ?><p class="pesan-error"><?= $error ?></p><?php } ?>
-    <form method="post">
-      <label>Email</label>
-      <input type="email" name="email" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
-      <label>Password</label>
-      <input type="password" name="password" required>
-      <button class="btn btn-pink" type="submit">Masuk</button>
+<section class="container" style="max-width:460px; padding:48px 20px;">
+  <div class="card">
+    <h2 style="margin-bottom:6px;">Masuk ke Akun LYDI</h2>
+    <p style="font-size:0.85rem; color:var(--ink-secondary); margin-bottom:20px;">
+      Masuk sebagai pelanggan untuk melacak pesanan atau sebagai admin studio.
+    </p>
+    <?php if ($error): ?>
+      <div style="padding:10px; border-radius:8px; background:#FEF2F2; color:#991B1B; font-size:0.85rem; margin-bottom:14px;">
+        <?= htmlspecialchars($error) ?>
+      </div>
+    <?php endif; ?>
+    <form action="<?= baseUrl('process/auth_process.php') ?>" method="POST" style="display:flex; flex-direction:column; gap:14px;">
+      <input type="hidden" name="action" value="login">
+      <div>
+        <label style="font-size:0.82rem; font-weight:600;">Email</label>
+        <input type="email" name="email" required placeholder="nama@email.com">
+      </div>
+      <div>
+        <label style="font-size:0.82rem; font-weight:600;">Kata Sandi</label>
+        <input type="password" name="password" required placeholder="Masukkan kata sandi">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Masuk Sekarang</button>
     </form>
+    <p style="font-size:0.82rem; color:var(--ink-secondary); margin-top:16px; text-align:center;">
+      Belum punya akun? <a href="<?= baseUrl('pages/register.php') ?>" style="color:var(--accent-sage); font-weight:600;">Daftar di sini</a>
+    </p>
   </div>
-</div>
-<?php include '../includes/footer.php'; ?>
+</section>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
