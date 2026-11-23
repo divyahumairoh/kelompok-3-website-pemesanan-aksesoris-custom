@@ -1,33 +1,63 @@
+
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
+// includes/header.php
 require_once __DIR__ . '/../config/koneksi.php';
 
-$halaman = $halaman ?? '';
-$jumlah_keranjang = isset($_SESSION['keranjang']) ? count($_SESSION['keranjang']) : 0;
+$currentUser = $_SESSION['user'] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= $judul ?? 'Lydi' ?> | Lydi Accessories</title>
-  <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
-</head>
-<body>
-<header class="navbar">
-  <a class="logo" href="<?= BASE_URL ?>/index.php">lydi.</a>
-  <nav class="menu">
-    <a href="<?= BASE_URL ?>/index.php" class="<?= $halaman == 'home' ? 'aktif' : '' ?>">Home</a>
-    <a href="<?= BASE_URL ?>/pages/katalog.php" class="<?= $halaman == 'shop' ? 'aktif' : '' ?>">Shop</a>
-    <a href="<?= BASE_URL ?>/pages/kustomisasi.php" class="<?= $halaman == 'custom' ? 'aktif' : '' ?>">Custom</a>
-    <a href="<?= BASE_URL ?>/pages/lacak.php" class="<?= $halaman == 'lacak' ? 'aktif' : '' ?>">Track Order</a>
-  </nav>
-  <div class="ikon">
-    <a href="<?= BASE_URL ?>/pages/katalog.php">🔍</a>
-    <a href="<?= BASE_URL ?>/pages/keranjang.php">🛒<?= $jumlah_keranjang > 0 ? " ($jumlah_keranjang)" : "" ?></a>
-    <a href="<?= BASE_URL ?>/pages/<?= isset($_SESSION['user_id']) ? 'profil.php' : 'login.php' ?>">👤</a>
-  </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/tema.css">
+    <title>LYDI — Studio Aksesoris Custom</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS utama -->
+    <link rel="stylesheet" href="<?= baseUrl('assets/css/style.css') ?>">
+</head>
+
+<body>
+
+<header class="lydi-header">
+    <div class="container header-inner">
+
+        <a href="<?= baseUrl('index.php') ?>" class="brand-logo">
+            LYDI
+        </a>
+
+        <nav class="nav-links">
+            <a href="<?= baseUrl('index.php') ?>">Beranda</a>
+
+            <a href="<?= baseUrl('pages/kustomisasi.php') ?>">
+                Studio Kustom
+            </a>
+            <a href="<?= baseUrl('pages/track_order.php') ?>">
+                Lacak Pesanan
+            </a>
+            <?php if ($currentUser && $currentUser['role'] === 'admin'): ?>
+                <a href="<?= baseUrl('pages/admin.php') ?>">Admin</a>
+            <?php endif; ?>
+
+            <?php if ($currentUser): ?>
+                <a href="<?= baseUrl('process/auth_process.php?action=logout') ?>">
+                    Keluar (<?= htmlspecialchars($currentUser['nama']) ?>)
+                </a>
+            <?php else: ?>
+                <a href="<?= baseUrl('pages/login.php') ?>">Masuk</a>
+            <?php endif; ?>
+        </nav>
+
+        <a href="<?= baseUrl('pages/checkout.php') ?>" class="btn btn-primary">
+            Checkout
+        </a>
+
+    </div>
 </header>
+
+<main class="main-content">
